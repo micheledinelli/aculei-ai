@@ -1,0 +1,6 @@
+/docs/*.aux
+/docs/*.log
+/docs/*.pdf
+/docs/*.gz
+/docs/*.toc
+
