@@ -21,7 +21,18 @@ Hello
 
 \newpage
 
-\section{Another Section}
-Hello
+\section{Dataset}
+
+\subsection{Raccolta Dati}
+Bullet point delle operazioni eseguite per poter eseguire la raccolta dei dati da trattare.
+\begin{itemize}
+    \item Ottenute le immagini da DropBox
+    \item Estrazione dei meta-dati:
+    \begin{itemize}
+        \item ocr (\textit{easyocr}, \textit{pytesseract})
+        \item lettura filesystem (\textit{exiftool}), abbiamo utilizzato il wrapper Python \textbf{PyExifTool}
+    \end{itemize}
+\end{itemize}
+
 
 \end{document}
