@@ -8,3 +8,4 @@
 
 # Notebooks
 .ipynb_checkpoints/
+notebooks/__pycache__
