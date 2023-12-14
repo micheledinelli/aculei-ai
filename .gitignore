@@ -5,6 +5,7 @@
 /docs/*.pdf
 /docs/*.gz
 /docs/*.toc
+/docs/*.swp
 
 # Notebooks
 .ipynb_checkpoints/
