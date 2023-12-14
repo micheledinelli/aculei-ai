@@ -6,12 +6,12 @@ Execution order
 
 1. metadata_extraction.ipynb
 
-`This notebooks sets up the dataframe reading the images folder and extracting the metadata from them. It creates aculei.csv file at the end of the execution.`
+> This notebook sets up the dataframe reading the images folder and extracting the metadata from them. It creates aculei.csv file at the end of the execution.
 
 2. ocr.ipynb
 
-`This notebook uses ocr to read missing data and filling the aculei.csv dataset.`
+> This notebook uses ocr to read missing data and filling the aculei.csv dataset.
 
 3. data_visualization.ipynb
 
-`This notebook uses matplotlib and seaborn to visualize data and gives some insights`
+> This notebook uses matplotlib and seaborn to visualize data and gives some insights
