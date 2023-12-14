@@ -10,3 +10,6 @@
 # Notebooks
 .ipynb_checkpoints/
 notebooks/__pycache__
+
+# Images
+images/aculei-images
