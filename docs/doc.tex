@@ -1,9 +1,17 @@
 \title{AI-2023}\documentclass[12pt,a4paper,twoside]{article}
+
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage[left=3cm,right=3cm,top=4cm,bottom=5cm]{geometry}
+
+%------------------------------ font preferences (1) or sc
+\usepackage[sc]{mathpazo} 
+\usepackage{newpxmath}
+
+%------------------------------ font preferences (2) 
+%\usepackage[libertine,cmintegrals,cmbraces,vvarbb]{newtxmath}
 
 \author{Brajucha Filippo, Dinelli Michele, Hanna Youssef}
 \title{Report AI}
@@ -13,15 +21,41 @@
 \maketitle
 
 \section*{Abstract}
-Hello
-
+Aculei è un progetto nato per rendere disponibile un archivio fotografico contenente foto di animali scattate 
+da fototrappole automatiche collocate nella campagna Umbra. Da un'idea di Tobia Faverio (il fotografo proprietario dell'archivio fotografico)
+nasce il progetto Aculei che ha come obiettivo rendere fruibile l'archivio online fornendo un'esperienza interattiva agli utenti guidata
+dall'intelligenza artificiale. Aculei vuole infatti rafforzare il legame tra natura e tecnologia che in questo contesto nasce dal momento stesso
+nel quale viene scattata una fotografia. Le foto trappole oggetti tencologi e automatici che si legano al contesto naturale circostante immortalando
+la natura nel suo stato puro. La volontà è proporre questo concetto fornendo un percorso virtuale tra le fotografie scattate, guidato dall'intelligenza
+artificiale, la quale subentra come portavoce di tecnologia, affiancandosi alla natura.       
 \newpage
 
 \tableofcontents
 
 \newpage
 
-\section{Another Section}
-Hello
+\section{Dataset}
+L'obiettivo di questa sezione è l'estrazione di dati ordinati e corretti, partendo dall'insieme grezzo di immagini 
+raccolte a partire dal 2020 per trasformarle in dati manipolabili e significativi.
+
+\subsection{Raccolta dati}
+Il primo problema riscontrato è strettamente correlato alla raccolta dei dati
+
+\section{Clustering}
+
+\section{Conclusioni}
+
+\subsection{Raccolta Dati}
+Bullet point delle operazioni eseguite per poter eseguire la raccolta dei dati da trattare.
+\begin{itemize}
+    \item Ottenute le immagini da DropBox
+    \item Estrazione dei meta-dati:
+    \begin{itemize}
+        \item ocr (\textit{easyocr}, \textit{pytesseract})
+        \item lettura filesystem (\textit{exiftool}), abbiamo utilizzato il wrapper Python \textbf{PyExifTool}
+    \end{itemize}
+    \item Estrazione della fase lunare partendo da data e ora utilizzando uno script Python
+\end{itemize}
+
 
 \end{document}
