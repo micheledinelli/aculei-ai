@@ -8,7 +8,7 @@ Execution order
 
 1. **[metadata.ipynb](metadata.ipynb)**
 
-> This notebook sets up the dataframe reading the images folder and extracting the metadata from them. It creates [metadata.csv](../datasets/metadata.csv) at the end of the execution.
+> This notebook sets up the dataframe reading the images folder and extraxcts the metadata from them. It creates [metadata.csv](../datasets/metadata.csv) at the end of the execution.
 
 2. **[ocr.ipynb](ocr.ipynb)**
 
