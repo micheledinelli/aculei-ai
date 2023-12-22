@@ -40,7 +40,18 @@ raccolte a partire dal 2020 per trasformarle in dati manipolabili e significativ
 
 \subsection{Raccolta dati}
 Il primo problema riscontrato è strettamente correlato alla raccolta dei dati
+che sono stati forniti in maniera non ordinata e non strutturata. La prima operazione effettuata è stata quella di scaricare le immagini da Dropbox, dopopodiché sono stati presi in considerazioni più approcci per poter estrarre i dati dai file immagine.
+\subsubsection{Prima fase}
+Il primo approccio adottato è stato quello di utilizzare sistemi di riconoscimento ottico dei caratteri \textit{(OCR)} per estrarre i dati dai file immagine. In particolare è stato sviluppato uno script in Python che utilizza integrando diverse librerie come \textit{easyocr, pytesseract, keras-ocr} per estrarre i dati dai file immagine. Questo tentativo ha permesso di estrarre i dati dai file immagine, ma ha presentato diversi problemi tra cui la scarsa qualità dei dati per alcuni campi e sopratutto i tempi di esecuzione molto lunghi. 
+\subsubsection{Seconda fase}
+In questa seconda fase è stata mantenuta l'idea di utilizzare gli \textit{OCR}, ma quelli integrati nei dispositivi \textit{MacOS} e \textit{Ios}. Nello specifico è stata implementata una \textit{shortcut} che permette di estrarre i dati dai file immagine e di salvarli in un file \textit{.csv}. Questa soluzione è stata effettivimante più efficace nel riconoscimento dei caratteri, ma presentava tempi di esecuzioni molto lunghi e la necessità di utilizzare dispositivi \textit{MacOS} o \textit{Ios}.
 
+\subsubsection{Terza fase}
+La terza fase è stata quella di utilizzare un sistema di lettura dei meta-dati dei file immagine. In particolare è stato utilizzato \textit{exiftool}, un software open source che permette leggere e manipolare meta-dati di immagini immagine. Questa soluzione ha permesso di estrarre i dati in maniera molto più veloce e una qualità dei dati molto più alta. Inoltre è possibile questa soluzione su qualsiasi sistema operativo aumentandone la versatilità.
+\subsubsection{Quarta fase}
+La terza fase è stata molto precisa, l'unico problema riscontrato è stata la mancanza dei dati relativi alla temperatura nei meta-dati. Questo problema è stato risolto utilizzando un sistema di \textit{OCR, pytesseract} per estrarre i dati, solamente relativi alla temperatura, dalle foto e inserirli nel file \textit{.csv}. In questo modo il \textit{dataset} era quasi completato.
+\subsubsection{Quinta fase}
+In questa ultima fase il \textit{dataset} presentava delle mancanze per quanto riguarda la temperatura. Per risolvere questo problema è stata effettuata una seconda iterazione con gli \textit{OCR} utilizzando la libreria di \textit{easyocr}. Quest'ultima ha restituito un risultato più accurato e efficace rispetto a \textit{pytesseract} ed è stato possibile terminare la popolazione del \textit{dataset}.
 \section{Clustering}
 
 \section{Conclusioni}
