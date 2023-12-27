@@ -1,43 +1,69 @@
-\title{AI-2023}\documentclass[12pt,a4paper,twoside]{article}
+\documentclass[12pt,a4paper,twoside]{article}
 
+%------------------------------ encoding
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
+
+%------------------------------ page layout
 \usepackage[left=3cm,right=3cm,top=4cm,bottom=5cm]{geometry}
 
+%------------------------------ clickable toc and links styles
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
 %------------------------------ font preferences (1) or sc
-\usepackage[sc]{mathpazo} 
-\usepackage{newpxmath}
+%\usepackage[sc]{mathpazo} 
+%usepackage{newpxmath}
 
 %------------------------------ font preferences (2) 
 %\usepackage[libertine,cmintegrals,cmbraces,vvarbb]{newtxmath}
 
-\author{Brajucha Filippo, Dinelli Michele, Hanna Youssef}
-\title{Report AI}
+%------------------------------ font preferences (3) 
+%\usepackage[libertine,cmintegrals,cmbraces,vvarbb]{newtxmath}
 
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+    \centering
+    \vspace*{\fill}
+
+    \vspace*{0.5cm}
+    
+    \huge ACULEI
+    
+    \vspace*{1cm}
+    \small Brajucha Filippo, Dinelli Michele, Hanna Yossef
+    
+    \vspace*{0.5cm}
+    \small Dicembre 2023
+    
+    \vspace*{\fill}
+\end{titlepage}
+
+%\maketitle
+
+\newpage
 
 \section*{Abstract}
-Aculei è un progetto nato per rendere disponibile un archivio fotografico contenente foto di animali 
-scattate da fototrappole automatiche collocate nella campagna Umbra. Da un'idea di Tobia Faverio 
-(il fotografo proprietario dell'archivio fotografico) nasce il progetto Aculei che ha come obiettivo 
-rendere fruibile l'archivio online fornendo un'esperienza interattiva agli utenti guidata
-dall'intelligenza artificiale. Aculei vuole infatti rafforzare il legame tra natura e tecnologia 
-che in questo contesto nasce dal momento stesso nel quale viene scattata una fotografia. Le foto trappole 
-oggetti tencologi e automatici che si legano al contesto naturale circostante immortalando la natura 
-nel suo stato puro. La volontà è proporre questo concetto fornendo un percorso virtuale tra le 
-fotografie scattate, guidato dall'intelligenza artificiale, la quale subentra come portavoce di tecnologia, 
-affiancandosi alla natura.       
+
+Questo report tratta della realizzazione di un'intelligenza artificiale al servizio di un archivio fotografico online. Il progetto si chiama ACULEI e nasce dall'idea di Tobia Faverio, un fotografo nato a Milano e cresciuto in Umbria. ACULEI è una raccolta molta vasta di fotografie scattate da foto-trappole sparse per un boschetto nel cuore dell'Umbria. Le foto-trappole sono state disposte da Tobia durante i primi mesi della Pandemia da virus SARS-CoV-2 per monitorare quale specie animali frequentassero quelle zone. 
+
+Sono stati prodotti numerosi scatti (ad oggi più di 17 000) che ritraggono vari animali come istrici, cinghiali, caprioli e addirittura lupi. ACULEI dunque vuole offrire un'esperienza virtuale e interattiva per esplorare l'archivio fotografico nato dalla raccolta di scatti. 
+
+Per rendere migliore l'esperienza è stata sviluppata un'intelligenza artificiale che possa guidare il visitatore dell'archivio, offrendogli un percorso selezionato così da scoprire le fotografie simili o correlate.
+ 
 \newpage
 
 \tableofcontents
 
 \newpage
 
-\section{Raccolta Dati}
+\section{Raccolta dati}
 Capire come condividere tutti i dati, quale piattaforma non comprime le fotografie e permette di caricarne /
 scaricare così tante? WeTransfer, Mega, Dropbox? alla fine è stato scelto Dropbox con un account premium, i 
 40GB di foto sono stati suddivisi in 10 cartelle in modo da permettere il download (Dropbox ha un limite di 
