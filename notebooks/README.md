@@ -10,14 +10,18 @@ Execution order
 
 > This notebook sets up the dataframe reading the images folder and extraxcts the metadata from them. It creates [metadata.csv](../datasets/metadata.csv) at the end of the execution.
 
-2. **[ocr.ipynb](ocr.ipynb)**
+2. **[ocr_1.ipynb](ocr_1.ipynb)**
 
-> This notebook uses ocr to read missing data. It creates [ocr.csv](../datasets/ocr.csv) at the end of the execution. `ocr.csv` fills the gap of `metadata.csv`.
+> This notebook uses ocr `pytesseract` to read missing data. It creates [ocr.csv](../datasets/ocr.csv) at the end of the execution. `ocr.csv` fills the gap of `metadata.csv`.
 
-3. **[meld.ipynb](meld.ipynb)**
+3. **[ocr_2.ipynb](ocr_2.ipynb)**
 
-> This notebook merges results from metadata.ipynb and ocr.ipynb to obtain the final dataset. It checks for duplicate images, and checks the data produced with ocr. It creates [aculei.csv](../datasets/aculeiß.csv)
+> This notebook processes [ocr.csv](../datasets/ocr.csv) to add antoher pipeline step. It refines the results obtained from ocr_1.ipynb using `easyocr` python library.
 
-4. **[insights.ipynb](insights.ipynb)**
+4. **[meld.ipynb](meld.ipynb)**
 
-> This notebook uses matplotlib and seaborn to visualize data and give some insights
+> This notebook merges results from metadata.ipynb and ocr.ipynb to obtain the final dataset. It checks for duplicate images, and checks the data produced with ocr. It creates [aculei.csv](../datasets/aculei.csv)
+
+5. **[insights.ipynb](insights.ipynb)**
+
+> This notebook uses matplotlib and seaborn to visualize data and some insights
