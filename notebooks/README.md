@@ -16,12 +16,12 @@ Execution order
 
 3. **[ocr_2.ipynb](ocr_2.ipynb)**
 
-> This notebook processes [ocr.csv](../datasets/ocr.csv) to add antoher pipeline step. I refines the results obtained from ocr_1.ipynb using `easyocr`.
+> This notebook processes [ocr.csv](../datasets/ocr.csv) to add antoher pipeline step. It refines the results obtained from ocr_1.ipynb using `easyocr` python library.
 
 4. **[meld.ipynb](meld.ipynb)**
 
-> This notebook merges results from metadata.ipynb and ocr.ipynb to obtain the final dataset. It checks for duplicate images, and checks the data produced with ocr. It creates [aculei.csv](../datasets/aculeiß.csv)
+> This notebook merges results from metadata.ipynb and ocr.ipynb to obtain the final dataset. It checks for duplicate images, and checks the data produced with ocr. It creates [aculei.csv](../datasets/aculei.csv)
 
 5. **[insights.ipynb](insights.ipynb)**
 
-> This notebook uses matplotlib and seaborn to visualize data and give some insights
+> This notebook uses matplotlib and seaborn to visualize data and some insights
