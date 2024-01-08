@@ -162,7 +162,17 @@ Immagine, Temperatura\\
 Quindi : mancano Hash e Fase Lunare
 
 \subsubsection{Manipolazione Meta-Dati}
+I dati mancanti sono \textit{Hash} e \textit{Fase Lunare}, entrambi dati ricavabili da calcoli effettuati
+su quelli esistenti.\\
+\\
+\paragraph{Fase Lunare}
+Il calcolo della fase lunare è stato complesso, abbiamo risocontrato alcuni problemi.\\
+Inizialmente abbiamo utilizzato la libreria \textbf{Python Ephem} (pypi.org/project/ephem) che però è 
+risultata troppo sofisticatata e quindi inutilmente complessa, facendoci individuare delle distribuzioni 
+anomale dei dati. La soluzione è stata quella di sostituirla con uno script trovato online, 
+\textbf{moonphase.py} (moon\_phase.py), molto più accurato e utile al nostro scopo.
 
+\\
 
 
 \end{document}
