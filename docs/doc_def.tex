@@ -62,8 +62,17 @@ dell'archivio, offrendogli un percorso selezionato così da scoprire le fotograf
 \section{Introduzione}
 
 \subsection*{Descrizione del Problema}
-Navigare tra le fotografie che abbiamo a disposizione seguendo un senso logico, spaziando tra immagini 
-correlate per periodo o fase lunare o animale o altri tipi di relazione.\\
+Abbiamo a nostra disposizione una raccolta di fotografie (circa 40GB) scattate da alcune foto-trappole 
+sparse per un appezzamento di terreno abbastanza vasto in Umbria, queste foto ci sono state passate dal 
+proprietario del terreno che le ha raccolte negli ultimi 4 anni e ora vuole creare un sistema per 
+renderle fruibili a tutti.\\
+L'idea iniziale era quella di creare un AI che fosse in grado di riconoscere l'animale immortalato e 
+riuscisse a "consigliare" delle altre immagini che ritraessero lo stesso animale. Analizzando il problema 
+abbiamo deciso di provare a creare un "viaggio" tra le immagini ma senza riconoscimento che risulterebbe 
+troppo complesso e ingegnoso, piuttosto creare un percorso attraverso la clusterizzazione.\\ 
+Lo scopo finale è quindi quello di navigare tra le fotografie che abbiamo a disposizione seguendo un 
+senso logico, spaziando tra immagini correlate per periodo o fase lunare o animale o altri tipi di 
+relazione.\\
 Sostanzialmente individuare un percorso più o meno strutturato e complesso che permetta di vedere più 
 fotografie possibili.
 \subsubsection*{Motivazione del problema e rilevanza}
@@ -85,19 +94,97 @@ dell'utente finale, noi, però, l'abbiamo pensata anche in ottica di ricerca, in
 osseravre e tracciare dei comportamentei particolari degli animali selvatici.
 
 \subsection*{Soluzione Proposta}
+La soluzione proposta è interamente incentrata nella creazione di un percorso interattivo generato tramite 
+la clusterizzazione delle immagini utilizzando diverse features.
 \subsubsection*{Approccio alla soluzione}
+Per arrivare alla soluzione abbiamo eseguito diversi tenativi con molteplici tecnologie, più o meno 
+sofisticate, che ci hanno restituito sia ottimi risultati che pessimi.\\
+Per ottenere la soluzione ottima a cui siamo arrivati abbiamo attraversato un percorso con molti ostacoli, 
+è stato fondamentale mantere la comunicazione nel gruppo. Molto spesso ci siamo trovati a discutere su 
+strade alternative o possibili soluzione a problemi, sicuramente senza la discussione tra di noi non 
+saremmo mai arrivati ad una conclusione rapidamente e avremmo impiegato molto più tempo ad affrontare le 
+insidie.\\
+La prima soluzione a cui avevamo pensato è stata quella di addestrare un AI con diverse immagini per poi 
+cercare di ottenere un output soddisfacente ed efficiente in cui essa avrebbe dovuto riconoscere lo stesso 
+animale presente nella foto. Il processo è stato piuttosto complesso e vedendo gli scarsi risultati abbiamo 
+abbandonato quasi subito questa idea.\\
+Dopo aver ottenuto dei risultati poco soddisfacenti ci siamo riuniti con il Professore per cercare di 
+trovare insieme una soluzione più congeniale, lui ci ha aiutato molto nell'esplorare altre idee pensando un 
+po fuori dagli schemi, osservando il problema da fuori e ri-organizzando il materiale a disposizione in 
+modo da lavorare con maggiore chiarezza e professionalità.\\
+Abbiamo quindi deciso di proseguire per un'altra soluzione altrettanto valida e, probabilmente, più adeguata 
+alla risoluzione del nostro problema. La scelta è stata quella di eseguire una clusterizzazione sulle 
+immagini in modo da creare dei \textit{pool} di immagini correlate, cambia quindi l'idea iniziale di 
+riconoscere l'animale ma viene mantenuta l'idea di un percorso interattivo ed espositivo.\\
+Durante la realizzazione di questa soluzione abbiamo approfondito l'uso di diversi algoritmi di clustering 
+e il tuning degli stessi, modificando parametri, numero di clusters, tipologie di dati ecc.
 \subsubsection*{Sfide informatiche affrontate}
+I problemi sono stati molteplici e si sono distribuiti uniformemente durante tutta la realizzazione del 
+progetto. Ne abbiamo riscontrati sia durante la prima fase in cui abbiamo cercato di allenare l'AI che 
+durante la preprazione del dataset per la clusterizzazione.\\
+Inizialemente il problema principale è stato quello di avere delle immagini chiare e simili in modo da 
+poter insegnare quali fossero i tratti caratterstici di ciascun animale, ma essi risultavano troppo 
+confusionarie e poco equiparabili, alcune erano sfocate, altre tagliate, altre ancora super luminose e 
+altre totalmente buie. Un altro problema durante questa fase è stato quello della dimensione delle foto, 
+esse risultavano troppo pesanti e dettagliate, quindi ingestibili dalla potenza di calcolo delle macchine 
+che abbiamo a disposizione.\\
+I problemi sono proseguiti nella fase della clusterizzazione, uno dei lavori più lunghi e macchinosi è 
+stato quello di realizzare il dataset. Abbiamo docuto scegliere quale features tenere, quali fossero le 
+più interessanti e quelle più facilmente reperibili in modo da avere pochi valori \textit{null}. Una volta 
+scelti i valori da studiare abbiamo dovuto capire quale fosse il metodo migliore per ottenerli, abbiamo 
+provato diverse tipologie di strumenti e diverse versioni degli stessi (molteplici OCR e diversi lettori 
+di filesystem).\\
+Infine abbiamo riolto diversi problemi legati alla memorizzazione dei dati in modo corretto, nonostante 
+le diverse tecniche testate abbiamo avuto diversi problemi di dati inconsistenti e quindi abbiamo dovuto 
+risolvere molti problemi di valori \textit{null} all'interno del dataset. Talvolta abbiamo dovuto anche 
+calcolare dei dati in modo da avere più informazioni da analizzare (come le stagioni o le fasi lunari), 
+oppure convertirne alcuni in mdo da renderli sensati dal punto di vista della clusterizzazione (con dei 
+one-hot-encoder ad esempio).\\
+Nonostante queste accortezze non siamo comunque riusciti a creare un dataset con tutti i dati che volevamo 
+ma comunque alcuni sono andati persi.
 \subsubsection*{Rassegna della letteratura}
+\textit{DA ESTENDERE}
 \subsubsection*{Divisione dei compiti nel gruppo}
+Il gruppo ha lavorato abbastanza uniformemente nella realizzazione del progetto, tutti hanno partecipato 
+in modo differente al completamento dello stesso.\\
+Durante la stesura del codice è risultato fondamentale un approccio in cui ognuno fosse libero di 
+criticare e consigliare quale fosse la soluzione ideale per lui. Ci sono state molte situazioni in cui 
+ci siamo riuniti e abbiamo provato ad ideare e sviluppare delle idee per poter risolvere i problemi 
+incontrati nel percorso.\\
+\textit{DA ESTENDERE}
 \subsubsection*{Risultati ottenuti in sintesi}
+\textit{DA ESTENDERE}
 
 
 \newpage
 \section{Metodo Proposto}
 
 \subsection*{Scelta della Soluzione}
+La soluzione scelta è stata quella di creare un percorso interattivo tra immagini correlate in 
+grado di coinvolgere e stupire l'utente in modo dinamico. Questa soluzione è stata ottenuta 
+eseguendo una clusterizzazione della raccolta di immagini.\\
+Una volta raccolte tutte le fotografie, sono state categorizzate e indicizzate in modo da creare 
+un dataset di informazioni, da studiare e ordinare per poi proporre un percorso interessante 
+all'utente finale.\\
+\textit{DA ESTENDERE}
 \subsubsection*{Alternativi considerati e giustificazioni della scelta}
+Abbiamo provato diversi metodi di clusterizzazione con diverse features da considerare e diverso 
+numero di clusters. Abbiamo capito che solo empiricamente e provando si può ottenere il risultato 
+migliore e più adatto alle esigenze.\\
+\textit{DA ESTENDERE}
 \subsubsection*{Metodologia per la misurazione delle performance}
+La misurazione della performance è avvenuta tramite diversi metodi e in diversi momenti durante la 
+realizzazione di questo progetto. Abbiamo sempre cercato di ottenere dei buoni risultati tenendo 
+sotto controllo i dati ottenuti.\\
+Per questo motivo, durante la creazione del dataset, abbiamo effettuato diversi test e diverse 
+misurazioni per vedere se i dati in output fossero sensati e collezionati nel modo corretto senza 
+particolari incongruenze.\\
+Per il nostro progetto risulta molto complesso parlare di misurazione della performance visto che 
+il risultato proposto è soggettivamente buono e non può essere valutato da parametri numerici. 
+Generalmente possiamo osservare che i risultati proposti sono di nostro gradimento ma sicuramente 
+possono esserci delle personalizzazioni che magari cambiano l'output in modo da ottenerne uno più 
+utile al proprio scopo, magari modificando le varibaili della clusterizzazione o il numero di 
+clusters.
 
 
 \newpage
