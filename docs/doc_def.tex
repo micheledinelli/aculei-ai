@@ -75,20 +75,20 @@ senso logico, spaziando tra immagini correlate per periodo o fase lunare o anima
 relazione.\\
 Sostanzialmente individuare un percorso più o meno strutturato e complesso che permetta di vedere più 
 fotografie possibili.
-\subsubsection*{Motivazione del problema e rilevanza}
+\subsubsection{Motivazione del problema e rilevanza}
 Questa commissione è stata effettuata dal propiretario delle foto che possiede anche le camere che le hanno
 scattate, per realizzare una pubblicazione artistica in modo da rendere fruibili da tutti un patrimonio 
 enorme rappresentato da queste foto che altrimenti resterebbe solo privato e sarebbe quasi uno spreco.\\
 L'idea è nata durante la pandemia, quando queste foto-trappole sono state piazzate e si è sviluppata fino ad 
 arrivare a questa idea finale.
-\subsubsection*{Pubblico interessato del problema}
+\subsubsection{Pubblico interessato del problema}
 Il target individuato potrebbe essere sicuramente collegato ad esperti del settore naturalistico che possono 
 utilizzare le foto messe a disposizione per studi ma anche ad apassionati di natura che possono esplorare 
 la fauna selvatica semplicemente con un click.\\
 Il pubblico interessato varia molto perchè il lavoro è tanto e i possibili utilizzi pure; oltre all'utente 
 finale, infatti, potrebbero esserci altri utenti interessati, come coloro che possono sfruttare il data-set 
 che abbiamo realizzato, opure coloro che possono utilizzare e migliorare la nostra clusterizzazione.
-\subsubsection*{Benefici di una soluzione}
+\subsubsection{Benefici di una soluzione}
 Una soluzione curata e precisa potrebbe essere sicuramente utile e interessante per l'intrattenimento 
 dell'utente finale, noi, però, l'abbiamo pensata anche in ottica di ricerca, infatti può essere utile per 
 osseravre e tracciare dei comportamentei particolari degli animali selvatici.
@@ -96,7 +96,7 @@ osseravre e tracciare dei comportamentei particolari degli animali selvatici.
 \subsection{Soluzione Proposta}
 La soluzione proposta è interamente incentrata nella creazione di un percorso interattivo generato tramite 
 la clusterizzazione delle immagini utilizzando diverse features.
-\subsubsection*{Approccio alla soluzione}
+\subsubsection{Approccio alla soluzione}
 Per arrivare alla soluzione abbiamo eseguito diversi tenativi con molteplici tecnologie, più o meno 
 sofisticate, che ci hanno restituito sia ottimi risultati che pessimi.\\
 Per ottenere la soluzione ottima a cui siamo arrivati abbiamo attraversato un percorso con molti ostacoli, 
@@ -118,7 +118,7 @@ immagini in modo da creare dei \textit{pool} di immagini correlate, cambia quind
 riconoscere l'animale ma viene mantenuta l'idea di un percorso interattivo ed espositivo.\\
 Durante la realizzazione di questa soluzione abbiamo approfondito l'uso di diversi algoritmi di clustering 
 e il tuning degli stessi, modificando parametri, numero di clusters, tipologie di dati ecc.
-\subsubsection*{Sfide informatiche affrontate}
+\subsubsection{Sfide informatiche affrontate}
 I problemi sono stati molteplici e si sono distribuiti uniformemente durante tutta la realizzazione del 
 progetto. Ne abbiamo riscontrati sia durante la prima fase in cui abbiamo cercato di allenare l'AI che 
 durante la preprazione del dataset per la clusterizzazione.\\
@@ -142,9 +142,9 @@ oppure convertirne alcuni in mdo da renderli sensati dal punto di vista della cl
 one-hot-encoder ad esempio).\\
 Nonostante queste accortezze non siamo comunque riusciti a creare un dataset con tutti i dati che volevamo 
 ma comunque alcuni sono andati persi.
-\subsubsection*{Rassegna della letteratura}
+\subsubsection{Rassegna della letteratura}
 \textit{DA ESTENDERE}
-\subsubsection*{Divisione dei compiti nel gruppo}
+\subsubsection{Divisione dei compiti nel gruppo}
 Il gruppo ha lavorato abbastanza uniformemente nella realizzazione del progetto, tutti hanno partecipato 
 in modo differente al completamento dello stesso.\\
 Durante la stesura del codice è risultato fondamentale un approccio in cui ognuno fosse libero di 
@@ -152,7 +152,7 @@ criticare e consigliare quale fosse la soluzione ideale per lui. Ci sono state m
 ci siamo riuniti e abbiamo provato ad ideare e sviluppare delle idee per poter risolvere i problemi 
 incontrati nel percorso.\\
 \textit{DA ESTENDERE}
-\subsubsection*{Risultati ottenuti in sintesi}
+\subsubsection{Risultati ottenuti in sintesi}
 \textit{DA ESTENDERE}
 
 
@@ -166,8 +166,19 @@ eseguendo una clusterizzazione della raccolta di immagini.\\
 Una volta raccolte tutte le fotografie, sono state categorizzate e indicizzate in modo da creare 
 un dataset di informazioni, da studiare e ordinare per poi proporre un percorso interessante 
 all'utente finale.\\
-\textit{DA ESTENDERE}
-\subsubsection*{Alternativi considerati e giustificazioni della scelta}
+Le soluzioni proposte non sono state poche, abbiamo provato diversi metodi e testato diverse 
+tecnologie per ottenere il risultato migliore, quello che coincidesse esattamente con le nostre 
+necessità di avere un sistema reattivo e sempre pronto ad essere aggiornato e migliorato con 
+altre immagini e informazioni, personalizzabile dall'utente e utile sia come intrattenimento, 
+quindi a scopo ludico, che interessante dal punto di vista scientifico e dell'osservazione. Per 
+questo abbiamo studiato e ci siamo anche informati su quali potessero essere le correlazioni 
+scientifiche con ciò che osservavamo e ciò che valutavamo, in modo da poter avere anche un 
+occhio critico per poter valutare se i risultati scovati fossere corretti oppure inutili e 
+sbagliati. Non essendo una materia di nostra competenza, infatti, abbiamo dovuto prestare molta 
+attenzione.\\
+La soluzione corretta è stata scelta anche dopo aver effettuato dell'inferenza sui dati in modo 
+da osservare la distribuzione degli stessi e capire se ci fossero stati dei problemi. 
+\subsubsection{Alternativi considerati e giustificazioni della scelta}
 Inizialmente abbiamo provato a realizzare un'AI in grado di riconoscere l'animale selvatico 
 dall'immagine, una sorta di \textit{lens} in grado di analizzare la foto e il contesto per poter 
 tracciare quale fosse il soggetto della foto. L'idea è stata abbandonata piuttosto velocemente 
@@ -182,7 +193,7 @@ il risultato migliore e più adatto alle esigenze, seguendo anche delle regole t
 esempio l'\textbf{Elbow Method}, un metodo euristico che aiuta a scegliere il numero di 
 clusters necessari per ottenere il risultato migliori in termini di scelte di features e numero 
 di clusters.\\
-\subsubsection*{Metodologia per la misurazione delle performance}
+\subsubsection{Metodologia per la misurazione delle performance}
 La misurazione della performance è avvenuta tramite diversi metodi e in diversi momenti durante la 
 realizzazione di questo progetto. Abbiamo sempre cercato di ottenere dei buoni risultati tenendo 
 sotto controllo i dati ottenuti.\\
@@ -201,11 +212,11 @@ clusters.
 \section{Risultati Sperimentali}
 
 \subsection{Dimostrazione e Tecnologie}
-\subsubsection*{Istruzione per la dimostrazione}
+\subsubsection{Istruzione per la dimostrazione}
 La dimostrazione che si ottiene non è altro che un percorso tra delle immagini che sono 
 evidentemente correlate, secondo le features che abbiamo deciso di inserire nella clusterizzazione, 
 ovvero: \textit{[Inserire le features scelte per la clusterizzazione]}.
-\subsubsection*{Tecnologie e versioni usate (riproducibilità)}
+\subsubsection{Tecnologie e versioni usate (riproducibilità)}
 Le immagini sono state scattate e raccolte maualmente da alcune foto-trappole, convertite poi in 
 formato \texttt{.jpeg} e caricate su dropbox, tramite il quale è stato possibile lavorare senza 
 avere con se la copia fisica delle imamgini stesse.\\ 
@@ -214,24 +225,24 @@ gestire e raccogliere i dati.\\
 \textit{DA ESTENDERE} 
 
 \subsection{Risultati}
-\subsubsection*{Risultati della configurazione migliore}
-\subsubsection*{Studio di ablazione: confronto tra configurazioni}
-\subsubsection*{Studio di comparazione con letteratura}
+\subsubsection{Risultati della configurazione migliore}
+\subsubsection{Studio di ablazione: confronto tra configurazioni}
+\subsubsection{Studio di comparazione con letteratura}
 
 
 \newpage
 \section{Discussione e Conclusioni}
 
 \subsection{Discussione dei Risultati}
-\subsubsection*{Analisi delle performance rispetto alle aspettative}
+\subsubsection{Analisi delle performance rispetto alle aspettative}
 
 \subsection{Validità del Metodo}
-\subsubsection*{Valutazione se il metodo rispetta le aspettative}
+\subsubsection{Valutazione se il metodo rispetta le aspettative}
 
 \subsection{Limitazione e Maturità}
-\subsubsection*{Limiti di applicabilità e bias}
+\subsubsection{Limiti di applicabilità e bias}
 
 \subsection{Lavori Futuri}
-\subsubsection*{Proposte per avanzare il progetto}
+\subsubsection{Proposte per avanzare il progetto}
 
 \end{document}
