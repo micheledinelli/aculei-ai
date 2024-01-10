@@ -61,7 +61,7 @@ dell'archivio, offrendogli un percorso selezionato così da scoprire le fotograf
 \newpage
 \section{Introduzione}
 
-\subsection*{Descrizione del Problema}
+\subsection{Descrizione del Problema}
 Abbiamo a nostra disposizione una raccolta di fotografie (circa 40GB) scattate da alcune foto-trappole 
 sparse per un appezzamento di terreno abbastanza vasto in Umbria, queste foto ci sono state passate dal 
 proprietario del terreno che le ha raccolte negli ultimi 4 anni e ora vuole creare un sistema per 
@@ -93,7 +93,7 @@ Una soluzione curata e precisa potrebbe essere sicuramente utile e interessante 
 dell'utente finale, noi, però, l'abbiamo pensata anche in ottica di ricerca, infatti può essere utile per 
 osseravre e tracciare dei comportamentei particolari degli animali selvatici.
 
-\subsection*{Soluzione Proposta}
+\subsection{Soluzione Proposta}
 La soluzione proposta è interamente incentrata nella creazione di un percorso interattivo generato tramite 
 la clusterizzazione delle immagini utilizzando diverse features.
 \subsubsection*{Approccio alla soluzione}
@@ -159,7 +159,7 @@ incontrati nel percorso.\\
 \newpage
 \section{Metodo Proposto}
 
-\subsection*{Scelta della Soluzione}
+\subsection{Scelta della Soluzione}
 La soluzione scelta è stata quella di creare un percorso interattivo tra immagini correlate in 
 grado di coinvolgere e stupire l'utente in modo dinamico. Questa soluzione è stata ottenuta 
 eseguendo una clusterizzazione della raccolta di immagini.\\
@@ -168,10 +168,20 @@ un dataset di informazioni, da studiare e ordinare per poi proporre un percorso 
 all'utente finale.\\
 \textit{DA ESTENDERE}
 \subsubsection*{Alternativi considerati e giustificazioni della scelta}
-Abbiamo provato diversi metodi di clusterizzazione con diverse features da considerare e diverso 
-numero di clusters. Abbiamo capito che solo empiricamente e provando si può ottenere il risultato 
-migliore e più adatto alle esigenze.\\
-\textit{DA ESTENDERE}
+Inizialmente abbiamo provato a realizzare un'AI in grado di riconoscere l'animale selvatico 
+dall'immagine, una sorta di \textit{lens} in grado di analizzare la foto e il contesto per poter 
+tracciare quale fosse il soggetto della foto. L'idea è stata abbandonata piuttosto velocemente 
+perchè le risorse a disposizione erano molto inferiori a quelle richieste da un lavoro così 
+costoso computazionalmente parlando.\\
+Per questo abbiamo optato per una soluzione più alla nostra portata e ugualmente molto 
+interessante, abbiamo creato un dataset con le immagini a nostra disposizione abbiamo provato 
+ad utilizzare diversi metodi di clusterizzazione con diverse features da considerare e diverso 
+numero di clusters.\\
+Dopo diverse prove e ricerche abbiamo capito che solo empiricamente e provando si può ottenere 
+il risultato migliore e più adatto alle esigenze, seguendo anche delle regole teoriche come ad 
+esempio l'\textbf{Elbow Method}, un metodo euristico che aiuta a scegliere il numero di 
+clusters necessari per ottenere il risultato migliori in termini di scelte di features e numero 
+di clusters.\\
 \subsubsection*{Metodologia per la misurazione delle performance}
 La misurazione della performance è avvenuta tramite diversi metodi e in diversi momenti durante la 
 realizzazione di questo progetto. Abbiamo sempre cercato di ottenere dei buoni risultati tenendo 
@@ -190,11 +200,20 @@ clusters.
 \newpage
 \section{Risultati Sperimentali}
 
-\subsection*{Dimostrazione e Tecnologie}
+\subsection{Dimostrazione e Tecnologie}
 \subsubsection*{Istruzione per la dimostrazione}
+La dimostrazione che si ottiene non è altro che un percorso tra delle immagini che sono 
+evidentemente correlate, secondo le features che abbiamo deciso di inserire nella clusterizzazione, 
+ovvero: \textit{[Inserire le features scelte per la clusterizzazione]}.
 \subsubsection*{Tecnologie e versioni usate (riproducibilità)}
+Le immagini sono state scattate e raccolte maualmente da alcune foto-trappole, convertite poi in 
+formato \texttt{.jpeg} e caricate su dropbox, tramite il quale è stato possibile lavorare senza 
+avere con se la copia fisica delle imamgini stesse.\\ 
+Per gli l'algoritmo di clustering è stato utilizzato Python con alcune sue librerie per poter 
+gestire e raccogliere i dati.\\
+\textit{DA ESTENDERE} 
 
-\subsection*{Risultati}
+\subsection{Risultati}
 \subsubsection*{Risultati della configurazione migliore}
 \subsubsection*{Studio di ablazione: confronto tra configurazioni}
 \subsubsection*{Studio di comparazione con letteratura}
@@ -203,16 +222,16 @@ clusters.
 \newpage
 \section{Discussione e Conclusioni}
 
-\subsection*{Discussione dei Risultati}
+\subsection{Discussione dei Risultati}
 \subsubsection*{Analisi delle performance rispetto alle aspettative}
 
-\subsection*{Validità del Metodo}
+\subsection{Validità del Metodo}
 \subsubsection*{Valutazione se il metodo rispetta le aspettative}
 
-\subsection*{Limitazione e Maturità}
+\subsection{Limitazione e Maturità}
 \subsubsection*{Limiti di applicabilità e bias}
 
-\subsection*{Lavori Futuri}
+\subsection{Lavori Futuri}
 \subsubsection*{Proposte per avanzare il progetto}
 
 \end{document}
