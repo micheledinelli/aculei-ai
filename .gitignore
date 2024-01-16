@@ -9,6 +9,8 @@
 /docs/*.out
 /docs/*.bcf
 /docs/*.xml
+/docs/*.bbl
+/docs/*.blg
 
 # Notebooks
 .ipynb_checkpoints/
