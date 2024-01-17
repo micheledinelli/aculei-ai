@@ -341,8 +341,8 @@ sull'analisi delle componenti principali (\textit{PCA}).\\
 Le immagini sono state scattate e raccolte maualmente da alcune foto-trappole, convertite poi in 
 formato \texttt{.jpeg} e caricate su dropbox, tramite il quale è stato possibile lavorare senza 
 avere con se la copia fisica delle imamgini stesse.\\ 
-Per gli l'algoritmo di clustering è stato utilizzato Python (\textit{Python 3.11.7}) con alcune sue librerie 
-per poter gestire e raccogliere i dati, eccone un elenco completo:
+Per gli l'algoritmo di clustering è stato utilizzato Python (\textit{Python 3.11.7}) con alcune 
+sue librerie per poter gestire e raccogliere i dati, eccone un elenco completo:
 \begin{table}[h!]
     \centering
     \begin{tabular}{||l|r||l|r||}
@@ -386,38 +386,69 @@ per poter gestire e raccogliere i dati, eccone un elenco completo:
 % }
 \end{table}
 
+Abbiamo utilizzato i dati presenti nel dataset, ottenuti dall'analisi delle immagini, per 
+rappresentare al meglio i risultati ottenuti. Dopo dei processi di inferenza sono stati prodotti 
+questi tre grafici, a parer nostro molto significativi al fine di comprendere la distribuzione 
+dei dati a nostra disposizione nel tempo. \\
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth ,height=\textheight, keepaspectratio]{assets/photos-ot.png}
-    \caption{Numero totale di fotografie per ogni mese}
-    \label{fig:photos-ot}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\textwidth ,height=\textheight, keepaspectratio]{assets/boxplot-outliers.png}
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/boxplot-outliers.png}
     \caption{Boxplot dei dati prima di rimuovere gli outliers}
     \label{fig:boxplot-outliers}
 \end{figure}
-
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth ,height=\textheight, keepaspectratio]{assets/boxplot-wout-outliers.png}
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/boxplot-wout-outliers.png}
     \caption{Boxplot dei dati dopo aver rimosso gli outliers}
     \label{fig:boxplot-wout-outliers}
 \end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/photos-ot.png}
+    \caption{Numero totale di fotografie per ogni mese}
+    \label{fig:photos-ot}
+\end{figure}
+Il primo grafico è un \textit{boxplot} che rappresenta il numero di foto presenti nel dataset ad 
+ogni mese, questo grafico contiene anche i dati etichettati successivamente come 
+\textit{outliers}.\\ 
+Successivamente abbiamo utilizzato sempre il \textit{boxplot} ma eliminando, appunto, gli 
+\textit{outliers} per riuscire a farci un'idea di quante foto effettivamente potevano essere 
+scattate in media dalle macchine in un mese.\\
+Abbiamo utilizzato i dati senza \textit{outliers} anche per creare un \textit{grafico a barre} 
+che fosse più esplitativo sul numero di foto presenti nel dataset suddivise per mese, abbiamo 
+comunque osservato che ci sono dei picchi sia molto alti che molto bassi.
 
 
 \subsubsection{Risultati della configurazione migliore}
+Nella configurazione migliore del clustering abbiamo potuto osservare come il nostro sistema 
+basato su \textit{zero-shot image classification} fosse comunque molto efficente e ci fornisse 
+dei risultati abbastanza soddisfacenti, raggruppando con successo gli animali negli stessi cluster 
+oppure comunque con altre immagini effettivamente simili (e quindi correlate).\\ 
+\textit{DA ESTENDERE / RIVEDERE}
+
 \subsubsection{Studio di ablazione: confronto tra configurazioni}
+Effetuando la clusterizzazione all'interno del dataset abbiamo affrontato delle scelte che hanno 
+comportato delle particolari configurazioni, in particolare abbiamo effettuato la \textit{PCA} e 
+abbiamo esaminato i risultati ottenuti grazie alle curve descritte dal variare della varianza in 
+base alle components considerate, quella del \textit{Silhouette Score} ed anceh quella del 
+\textit{WCSS} (Within-Clusters Sum of Squares).\\
+\textit{DA ESTENDERE / RIVEDERE}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth ,height=\textheight, keepaspectratio]{assets/elbow-silhouette.png}
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/variance-ratio.png}
+    \caption{Rapporto di Varianza per numero di Components Principali}
+    \label{fig:variance-ratio}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/elbow-silhouette.png}
     \caption{Grafico di comparazione Elbow Method - Silhouette Score}
     \label{fig:elbow-silhouette}
 \end{figure}
-\subsubsection{Studio di comparazione con letteratura}
 
+
+\subsubsection{Studio di comparazione con letteratura}
+\textit{DA ESTENDERE / RIVEDERE}
 
 \newpage
 \section{Discussione e Conclusioni}
