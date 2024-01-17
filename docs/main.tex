@@ -343,7 +343,7 @@ formato \texttt{.jpeg} e caricate su dropbox, tramite il quale è stato possibil
 avere con se la copia fisica delle imamgini stesse.\\ 
 Per gli l'algoritmo di clustering è stato utilizzato Python (\textit{Python 3.11.7}) con alcune 
 sue librerie per poter gestire e raccogliere i dati, eccone un elenco completo:
-\begin{table}[h!]
+\begin{table}[!ht]
     \centering
     \begin{tabular}{||l|r||l|r||}
         \hline
@@ -371,7 +371,7 @@ sue librerie per poter gestire e raccogliere i dati, eccone un elenco completo:
 
 \subsection{Risultati}
 
-\begin{table}[h!]
+\begin{table}[!ht]
     \centering
 % \setlength{\tabcolsep}{0.5em} % horizontal padding
 % {\renewcommand{\arraystretch}{1.5} % vertical padding
@@ -390,19 +390,19 @@ Abbiamo utilizzato i dati presenti nel dataset, ottenuti dall'analisi delle imma
 rappresentare al meglio i risultati ottenuti. Dopo dei processi di inferenza sono stati prodotti 
 questi tre grafici, a parer nostro molto significativi al fine di comprendere la distribuzione 
 dei dati a nostra disposizione nel tempo. \\
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/boxplot-outliers.png}
     \caption{Boxplot dei dati prima di rimuovere gli outliers}
     \label{fig:boxplot-outliers}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/boxplot-wout-outliers.png}
     \caption{Boxplot dei dati dopo aver rimosso gli outliers}
     \label{fig:boxplot-wout-outliers}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/photos-month.png}
     \caption{Numero totale di fotografie per ogni mese}
@@ -433,13 +433,13 @@ abbiamo esaminato i risultati ottenuti grazie alle curve descritte dal variare d
 base alle components considerate, quella del \textit{Silhouette Score} ed anceh quella del 
 \textit{WCSS} (Within-Clusters Sum of Squares).\\
 \textit{DA ESTENDERE / RIVEDERE}
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/variance-ratio.png}
     \caption{Rapporto di Varianza per numero di Components Principali}
     \label{fig:variance-ratio}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/elbow-silhouette.png}
     \caption{Grafico di comparazione Elbow Method - Silhouette Score}
