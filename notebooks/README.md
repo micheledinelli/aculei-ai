@@ -33,3 +33,7 @@ Execution order
 7. **[clustering-one-hot-encoded.ipynb](clustering/clustering-one-hot-encoded.ipynb)**
 
 > This notebook uses unsupervised learning algorithms such as [KMeans](https://it.wikipedia.org/wiki/K-means) to cluster similar images using the dataset we built. This clustering version analyzes data using [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) and the dataset used only categorical data translated using one-hot-encoding. We evaluated KMeans performances using both [euclidian distance implentation and manhattan distance implementation](https://towardsdatascience.com/log-book-guide-to-distance-measuring-approaches-for-k-means-clustering-f137807e8e21).
+
+BONUS. **[feed-datasets.ipynb](feed-datasets.ipynb)**
+
+> This notebook creates two dataset to feed clustering models such as KMeans
