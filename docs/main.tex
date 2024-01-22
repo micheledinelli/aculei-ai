@@ -1,7 +1,10 @@
 \documentclass[12pt,a4paper,twoside]{article}
 
+\usepackage[english]{babel}
+
 %------------------------------ encoding
 \usepackage[utf8]{inputenc}
+\usepackage{csquotes}
 
 %------------------------------ page layout
 \usepackage[left=3cm,right=3cm,top=3cm,bottom=2cm]{geometry}
@@ -43,6 +46,13 @@
 %------------------------------ abstract
 \usepackage{abstract}
 \renewcommand{\abstractnamefont}{\normalfont\Large\bfseries}
+
+%------------------------------ page numbering
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{\thepage \hspace{1pt} of \pageref{LastPage}}
 
 \begin{document}
 
@@ -109,163 +119,66 @@
 \end{center}
 
 \begin{abstract}    
-\noindent Questo report descrive le varie fasi del processo di realizzazione di un dataset che 
-raccoglie i dati di fotografie di animali scattate automaticamente da foto-trappole situate nei boschi 
-dell'Umbria. Realizzare il dataset ha lo scopo di raccogliere una vasta quantità di dati, così da 
-metterli al servizio di tecniche di intelligenza artificiale, al fine di raggruppare e potenzialmente 
-classificare le fotografie.\\ 
-Si esplorano due approcci: il primo prevede l'apprendimento non supervisionato basato su algoritmi di 
-clusterizzazione, il secondo si basa invece sull'utilizzo di una tecnica chiamata \textit{zero-shot 
-image classification} al fine di classificare le fotografie in base all'animale ritratto.\\ 
-Negli ultimi anni la disciplina nota come computer vision ha fatto passi enormi, grazie a questa branchia 
-dell'informatica è possibile manipolare dati complessi, come le fotografie, estraendo da esse conoscenza. 
-Le informazioni ottenute dalle fotografie, le relazioni e i pattern nascosti che vengono identificati 
-dall'intelligenza artificiale sono utilizzati per generare un'esperienza interattiva all'interno di un 
-archivio fotografico chiamato \textit{aculei}. Il progetto \textit{aculei} nasce dall'idea di un 
-fotografo milanese che ha posizionato varie foto-trappole automatiche nei boschi che circondano la casa 
-in cui è cresciuto in Umbria. La volontà di pubblicare le fotografie e rendere l'esperienza sull'archivio 
-ai-driven sono le motivazioni che lo spingono a ideare il progetto \textit{aculei}.
+\noindent This report describes the steps in the process of building a dataset that collects data from photographs of animals taken automatically by photo-traps located in the forests of Umbria. Realizing the dataset aims to collect a vast amount of data, so as to put it at the service of artificial intelligence techniques in order to group and potentially classify the photographs. \\ Two approaches are explored: the first involves unsupervised learning based on algorithms of clustering, while the second is based on a technique called \textit{zero-shot image classification} in order to classify photographs according to the animal portrayed. \\ 
+In recent years, the discipline known as computer vision has made enormous strides, thanks to this branch of computer science it is possible to manipulate complex data, such as photographs, extracting knowledge from them. The information obtained from photographs, the relationships and hidden patterns that are identified by artificial intelligence are used to generate an interactive experience within a photographic archive called \textit{aculei}. The project \textit{aculei} is the brainchild of a Milanese photographer who placed several automatic photo-traps in the woods surrounding the house in which he grew up in Umbria. The desire to publish the photographs and make the experience on the archive ai-driven are his motivations for conceiving the project \textit{aculei}.
 \end{abstract}
 
-\section{Introduzione}
-La computer vision è un campo dell'intelligenza artificiale che permette ai computer di estrarre 
-informazioni e dati da immagini digitali, video e altri input visivi. Funziona più o meno come la 
-vista umana, ma gli umani hanno un grande vantaggio: dispongono di anni e anni di esperienza in cui 
-si sono allenati a distinguere gli oggetti \cite{ibm-comp-vision}. I computer devono fare lo stesso 
-ma in molto meno tempo ricorrendo generalmente a tecniche di deep learning sfruttando una tipologia di 
-reti neurali note come reti neurali convoluzionali. Sono state utilizzate diverse tecniche basate sulla 
-computer vision come ocr \footnote{Ocr: optical character recognition è un termine che descrive i 
-programmi dedicati al riconoscimento ottico dei caratteri in un documento} e zero-shot image 
-classification \footnote{Task di computer vision per la classificazione di immagini in una determinata 
-classe, senza alcun addestramento o conoscenza preventiva delle classi}.\\ 
-Per realizzare il dataset di aculei è stata ampiamente sfruttata la computer vision in quanto i dati 
-forniti sono più di 16000 immagini digitali che devono essere necessariamente processate da un computer.
+\section{Introduction}
+Computer vision is a field of artificial intelligence that allows computers to extract 
+information and data from digital images, videos and other visual inputs. It works in much the same way as human vision, but humans have a great advantage: they have years and years of experience in which they they have trained themselves to distinguish objects \cite{ibm-comp-vision}. Computers have to do the same but in much less time by generally resorting to deeplearning techniques by exploiting a type of neural networks known as convolutional neural networks. Several techniques have been used based on computer vision such as ocr (optical character recognition) \footnote{is a term that describes the programs dedicated to optical character recognition in a document} and zero-shot image classification \footnote{a computer vision task for classifying images into a given class, without any training or prior knowledge of the classes}. \\ Computer vision was extensively exploited to realize the spines dataset since the data provided are more than 16000 digital images that must necessarily be processed by a computer.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth ,height=\textheight, keepaspectratio]{assets/TF_ACULEI_16567_DSCF0121.jpg}
-    \caption{Esempio di immagine digitale scattata da una delle foto-trappole}
-    \label{fig:enter-label}
+    \caption{Example of a digital image taken by one of the photo-traps}
+    \label{fig:TF_ACULEI_16567_DSCF0121}
 \end{figure}
 
-\subsection{Descrizione del Problema}
-Si vuole creare un dataset contenente i dati di fotografie scattate automaticamente da foto-trappole 
-posizionate in Umbria. Le fotografie sono state rese disponibili dal fotografo proprietario delle 
-foto-trappole che le ha raccolte negli ultimi 4 anni.\\ 
-Dalle fotografie si vogliono estrarre i dati principali quali la temperatura, la fase lunare, la camera 
-che ha scattato l'immagine, la data e l'ora. Molto ambizioso è il riconoscimento dell'animale ritratto. 
-Le fotografie possono contenere tra i meta-dati alcune di queste informazioni mentre alcune volte sono 
-del tutto assenti come ad esempio la misurazione della temperature e le informazioni sulla tipologia di 
-animale. La perdita di alcune informazioni nei meta-dati potrebbe essere causata da software intermedi 
-che ha utilizzato il fotografo per processare le foto prima di fornirle per lo studio.\\ 
-Il problema quindi è definire una serie di procedure per processare le immagini, estraendo da esse le 
-informazioni rilevanti e quindi creare un dataset sul quale applicare tecniche di intelligenza artificiale 
-per identificare correlazioni tra le fotografie così da offrire un'esperienza coinvolgente sull'archivio 
-fotografico che le raccoglie.
+\subsection{Description of the problem}
+You want to create a dataset containing data from photographs taken automatically from photo-traps 
+placed in Umbria. The photographs were made available by the photographer owner of the 
+photo-traps who has been collecting them for the past 4 years.\\
+From the photographs we want to extract key data such as temperature, moon phase, the camera 
+that took the image, and the date and time. Very ambitious is the recognition of the animal portrayed. Photographs may contain among the meta-data some of this information while some times it is completely absent such as temperature measurement and information on the type of 
+animal. The loss of some information in the meta-data could be caused by intermediate software 
+that the photographer used to process the photos before providing them for the study.\\ 
+The problem then is to define a set of procedures for processing the images, extracting from them the relevant information and then create a dataset on which to apply artificial intelligence techniques to identify correlations among the photographs so as to provide an immersive experience on the archive photograph that collects them.
 
-\subsubsection{Motivazione del problema e rilevanza}
-Il progetto aculei nasce dalla volontà del fotografo proprietario delle foto-trappole di rendere pubbliche 
-le fotografie sviluppando un archivio fotografico online con forte impronta artistica. Oltre agli studi 
-stilistici legati all'interazione e all'esperienza utente è stato previsto uno studio applicando 
-l'intelligenza artificiale così che sia essa a guidare l'esperienza utente sull'archivio. Nel contesto del 
-progetto aculei la fase descritta in questo documento rappresenta un punto molto importante per lo sviluppo 
-del sistema di backend legato all'archivio fotografico.
+\subsubsection{Problem rationale and relevance}
+The spines project stems from the desire of the photographer who owns the photo-traps to make public photographs. To do so, he wanted to initiate the development of an online photo archive with a strong artistic imprint. \\ In addition to studies stylistics related to interaction and user experience, a phase has been planned in which artificial intelligence is applied so that it guides the user experience on the archive. In the context of the aculei project, the phase described in this paper represents a very important point in the development of the backend system related to the photo archive.
 
-\subsubsection{Pubblico interessato}
-Le persone interessate a questo progetto sono coloro che vogliono osservare le varie fasi di creazione 
-di un dataset a partire dalla raccolta dei dati fino alla realizzazione del dataset completo. Inoltre 
-potrebbero essere interessati anche coloro che vogliono utilizzare il dataset per studi propri o ampliare 
-e migliorare quelli al momenti svolti.
+\subsubsection{Interested audience}
+People interested in this project are those who want to observe the various stages of creating 
+of a dataset from data collection to the creation of the complete dataset. In addition, 
+those who want to use the dataset for their own studies or expand 
+and improve those at the moment carried out.
 
-\subsubsection{Benefici di una soluzione}
-Una soluzione dettagliata e ben documentata risulta sicuramente utile a definire gli step necessari alla 
-creazione di un dataset nella maniera più corretta e significativa, evidenziando le difficoltà e i punti 
-di forza.\\
-Realizzare un dataset soddisfacente, ordinato e facilmente utilizzabile significa anche completare la 
-componente che gestisce l'interazione sull'archivio \textit{aculei} attraverso il website, quindi 
-creare una piattaforma di esposizione di questi contenuti fotografici, sfruttando al meglio le loro 
-caratteristiche. 
+\subsubsection{Benefits of a solution}
+A detailed and well-documented solution is certainly helpful in defining the steps needed to 
+creation of a dataset in the most correct and meaningful way, highlighting the difficulties and strengths. \\ Making a satisfactory, orderly, and easily usable dataset also means completing the 
+component that manages the interaction on the archive \textit{aculei} through the website, then 
+create a platform for displaying this photographic content, making the most of its 
+features. 
 
+\subsection{Proposed Solution}
 
-\subsection{Soluzione Proposta}
+\subsubsection{Approach to the solution}
+The first idea was to develop an artificial intelligence with the available images. The artificial intelligence in question would have to predict the next image to recommend to the user from the previously recommended images. The process turned out to be rather complex because of the nature of the data (high-resolution images that had to be pre-processed in a precise manner). Under the circumstances, the idea was abandoned and we focused on an unsupervised approach based on clustering algorithms. To arrive at clustering processes, however, the basis remains the creation of a dataset on which to apply unsupervised learning. \\ For the purpose of building a dataset from digital photographs, we first asked ourselves what data were present and therefore extractable from a digital photograph. As can be seen in figure \ref{fig:TF_ACULEI_16567_DSCF0121} the photographs in question have a black horizontal stripe showing some of the meta-data exported directly from the photo-trap at the time it was taken. The meta-data are: the photo-trap that took the photo (camera), moon phase, temperature, date and time. This situation introduces two problems to consider: the horizontal strip of meta-data is not always present in the photographs (for reasons not currently determined) and the meta-data are not also found in the file meta-data, they are only present in the image in the form of pixels. Given these two issues, two steps were identified in order to accurately extract meta-data from the images: meta-data reading and extraction using \textit{Exiftool} \cite{exiftool} and ocr techniques using python libraries such as \textit{PyTesseract} \cite{pytesseract} and \textit{EasyOCR} \cite{easyocr} to extractg text from images. Once the two steps were carried out, a primitive version of the dataset was obtained but rich in infromations from which knowledge could be extracted.
 
-\subsubsection{Approccio alla soluzione}
-Per arrivare alla soluzione abbiamo eseguito diversi tenativi con molteplici tecnologie, più o 
-meno sofisticate, che ci hanno restituito sia ottimi risultati che pessimi.\\
-Per ottenere la soluzione ottima a cui siamo arrivati abbiamo attraversato un percorso con 
-molti ostacoli, è stato fondamentale mantere la comunicazione nel gruppo. Molto spesso ci siamo 
-trovati a discutere di alternative o possibili soluzione a problemi, sicuramente senza la 
-interazione tra di noi non saremmo mai arrivati ad una conclusione rapidamente e avremmo 
-impiegato molto più tempo ad affrontare le insidie.\\
-La prima soluzione a cui avevamo pensato è stata quella di addestrare un AI con diverse immagini 
-per poi cercare di ottenere un output soddisfacente ed efficiente in cui essa avrebbe dovuto 
-riconoscere lo stesso animale presente nella foto. Il processo è stato piuttosto complesso e 
-vedendo gli scarsi risultati abbiamo abbandonato quasi subito questa idea.\\
-Dopo aver ottenuto dei risultati poco soddisfacenti ci siamo riuniti e abbiamo discusso per 
-cercare una soluzione più congeniale e affine alle nostre necessità, abbiamo esplorato il 
-problema pensando un po' fuori dagli schemi, oltre ad aver trovato una nuova strada abbiamo 
-anche ri-organizzando il materiale a disposizione in modo da lavorare con maggiore chiarezza e 
-facilità.\\
-Viene deciso di proseguire per un'altra soluzione altrettanto valida e, probabilmente, più 
-adeguata alla risoluzione del nostro problema. La scelta è stata quella di eseguire una 
-clusterizzazione sulle immagini in modo da creare dei \textit{pool} di immagini correlate, 
-viene quindi cambiata l'idea di partire dal riconoscimento dell'animale ma viene mantenuta 
-l'idea di un percorso interattivo.\\
-Durante la realizzazione di questa soluzione abbiamo approfondito l'uso di diversi algoritmi 
-di clustering con il relativo tuning, modificando parametri, numero di clusters, tipologie di 
-dati ecc.
+\subsubsection{IT challenges faced}
+The main problems encountered are related to the quality of the images (not always optimal) and the unevenness of the data. For example, in some cases some meta-data were successfully extracted using \textit{Exiftool} while in other cases they were not. We had to provide fallback cases so that no information was lost. Another obstacle was time; in fact, applying ocr to photographs was not computationally fast. Some sort of pre-processing had to be provided to decrease the number of pixels that the libraries had to consult by cropping the photographs. This pre-processing added to the actual time to extract text from the images caused several takes. We used two libraries because comparing we noticed that the best results were obtained combining and merging the two outputs. \\ Another problem faced had to do with the encoding of the dataset, which is rich in categorical variables. We had to go very deep into these terms. As well as we had to delve into how we would choose the number of clusters and how to use the dataset for unsupervised learning (PCA analysis). Another challenge faced stems from the ambition we had in wanting to extract the label of the portrayed subject from the images as well. This caused a lot of time spent and we tried numerous approaches, evaluating for various pre-designed models without fine-tuning. Finally we agreed to the use of zero-image-classification of huggingface \cite{huggingface}.
 
-\subsubsection{Sfide informatiche affrontate}
-I problemi sono stati molteplici, affrontati durante tutta la realizzazione del progetto. Ne 
-abbiamo riscontrati sia durante la prima fase in cui abbiamo cercato di allenare l'AI che durante 
-la preprazione del dataset per la clusterizzazione.\\
-Inizialemente il problema principale è stato quello di avere delle immagini chiare e simili in 
-modo da poter insegnare quali fossero i tratti caratterstici di ciascun animale, ma essi 
-risultavano troppo confusionarie e poco equiparabili, alcune erano sfocate, altre tagliate, altre 
-ancora super luminose e altre totalmente buie. Un altro problema durante questa fase è stato 
-quello della dimensione delle foto, esse risultavano troppo pesanti e dettagliate, quindi 
-ingestibili dalla potenza di calcolo delle macchine a nostra disposizione.\\
-I problemi sono proseguiti nella fase della clusterizzazione, realizzare il dataset è stato un 
-lavoro lungo e macchinoso. Non avendo molta esperienza abbiamo proseguito un po a tentativi tra 
-diverse metodologie. Abbiamo dovuto scegliere quali caratteristiche delle immagini tenere, quali 
-fossero le più interessanti e quali quelle più facilmente reperibili in modo da avere pochi valori 
-\texttt{null}. Una volta scelti i valori da studiare abbiamo dovuto capire quale fosse il metodo 
-migliore per ottenerli, abbiamo testato diverse tipologie di strumenti e diverse versioni (alcuni 
-OCR e lettori dettagliati di filesystem).\\
-Infine abbiamo riolto diversi problemi legati alla memorizzazione dei dati in modo corretto, 
-nonostante le diverse tecniche testate abbiamo avuto diversi problemi di dati inconsistenti e 
-quindi abbiamo dovuto risolvere molti problemi di valori \texttt{null} all'interno del dataset. 
-Talvolta abbiamo dovuto anche calcolare dei dati in modo da avere più informazioni da analizzare 
-(come le stagioni o le fasi lunari), oppure convertirne alcuni in mdo da renderli sensati dal 
-punto di vista della clusterizzazione (operazioni di one-hot-encoding dei dati categorici). 
-Nonostante queste accortezze non siamo comunque riusciti a creare un dataset con tutti i dati che 
-volevamo ma comunque alcuni sono andati persi.\\
-Non sono mancate le difficoltà durante la fase di clusterizzazione, abbiamo dovuto infatti 
-recuperar 
+\subsubsection{SOA - State of the art}
+TODO
 
-\subsubsection{Rassegna della letteratura}
-Durante tutto il progetto abbiamo fatto grande uso della letteratura per recuperare informazioni 
-fondamentali che ci hanno portato al suo completamento.\\
+\subsubsection{Group management}
+The group worked fairly evenly in the implementation of the project, all of them having 
+participated in different ways in its completion.\\ During the writing of the code, an approach in which everyone was free to criticize and advise what was the ideal solution for him. There were many situations where we got together and tried to devise and develop ideas so that we could 
+solve the problems encountered along the way.
 % \textit{DA ESTENDERE}
 
-\subsubsection{Divisione dei compiti nel gruppo}
-Il gruppo ha lavorato abbastanza uniformemente nella realizzazione del progetto, tutti hanno 
-partecipato in modo differente al completamento dello stesso.\\
-Durante la stesura del codice è risultato fondamentale un approccio in cui ognuno fosse libero di 
-criticare e consigliare quale fosse la soluzione ideale per lui. Ci sono state molte 
-situazioni in cui ci siamo riuniti e abbiamo provato ad ideare e sviluppare delle idee per poter 
-risolvere i problemi incontrati nel percorso.\\
-% \textit{DA ESTENDERE}
-
-\subsubsection{Risultati ottenuti in sintesi}
-Siamo riusciti ad ottenere un dataset soddisfacente con tutte le informazioni di cui necessitiamo 
-e abbiamo anche già esplorato una clusterizzazione dettagliata.\\
-Questi risultati ci hanno permesso di poter completare nella maniera più corretta l'interazione 
-dell'archivio con il suo applicativo nel web.\\
-Come dimostrato nei paragrafi successivi siamo riusciti ad effettuare una clusterizzazione che 
-riteniamo più che corretta, studiando e utilizzando diverse metriche.\\
-% \textit{DA ESTENDERE}
-
+\subsubsection{Results obtained - a summary}
+We obtained a dataset from photos of animals taken by photo-traps. Each row in the dataset has information at the time of the shot such as moon phase, datetime, the most likely label of the subject pictured, a unique identifier, temperature, and season, and the photo-trap that took it. Some data are derivable but still useful for unsupervised learning tasks.
 
 \newpage
 \section{Metodo Proposto}
@@ -469,7 +382,11 @@ base alle components considerate, quella del \textit{Silhouette Score} ed anceh 
 \paragraph{Acknowledgements} Si ringrazia Tobia Faverio per aver reso possibile lo sviluppo di 
 questo progetto fornendo le fotografie e per la sua idea che ha dato vita ad \textit{aculei}.
 
+\paragraph{Code} available \href{https://gitlab.com/micheledinelli/aculei-ai}{here}
+
 \newpage
-\printbibliography
+\begin{refcontext}[sorting=none]
+    \printbibliography
+\end{refcontext}
 
 \end{document}
