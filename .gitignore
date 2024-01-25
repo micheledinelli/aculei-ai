@@ -19,3 +19,5 @@ notebooks/__pycache__
 # Images
 images/aculei-images
 clusters/
+
+notebooks/catboost_info
