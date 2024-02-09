@@ -202,99 +202,15 @@ Performance measurement was not trivial during development. We had to define how
 \subsection{Demonstration and Technologies}
 
 \subsubsection{Instruction for demonstration}
-La dimostrazione che si ottiene non è altro che un percorso tra delle immagini che sono 
-evidentemente correlate. Il percorso di selezione delle features, e in generale di setting di 
-tutto il sistema di clusterizzazione, è avenuto dopo uno studio del dataset basato 
-sull'analisi delle componenti principali (\textit{PCA}).\\ 
+For a demonstration of what has been achieved you can go to the \href{https://aculei.xyz}{aculei} website. Alternatively, source code is provided at the end of this report that can be run by instantiating a virtual python environment and cloning the repository. Note that the images are private and are not provided within the git repository, so request them from one of the authors.
 
-\subsubsection{Tecnologie e versioni usate (riproducibilità)}
-Le immagini sono state scattate e raccolte maualmente da alcune foto-trappole, convertite poi in 
-formato \texttt{.jpeg} e caricate su dropbox, tramite il quale è stato possibile lavorare senza 
-avere con se la copia fisica delle imamgini stesse.\\ 
-Per gli l'algoritmo di clustering è stato utilizzato Python (\textit{Python 3.11.7}) con alcune 
-sue librerie per poter gestire e raccogliere i dati, eccone un elenco completo:
-\begin{table}[!ht]
-    \centering
-    \begin{tabular}{||l|r||l|r||}
-        \hline
-        \textbf{Name} & \textbf{Version} & \textbf{Name} & \textbf{Version} \\
-        \hline
-        easyocr & 1.7.1 & PyExifTool & 0.5.6 \\
-        \hline
-        ImageHash & 4.3.1 & pytesseract & 0.3.10 \\
-        \hline
-        matplotlib & 3.6.0 & pywaffle & 1.1.0 \\
-        \hline
-        numpy & 1.26.3 & Requests & 2.31.0 \\
-        \hline
-        opencv\_python\_headless & 4.8.1.78 & scikit\_learn & 1.0.2 \\
-        \hline
-        pandas & 1.4.3 & seaborn & 0.13.1 \\
-        \hline
-        Pillow & 10.2.0 & tqdm & 4.65.0 \\
-        \hline
-        transformers & 4.25.0 & & \\
-        \hline
-    \end{tabular}
-    \caption{Python Libraries Requirements}
-\end{table}
+\subsubsection{Technologies and versions}
+The technologies used were python running in a notebook environment and a variety of libraries. The versions of the libraries used can be found on the \href{https://github.com/micheledinelli/aculei-ai}{requirements.txt} file in the attached repository.
 
-\subsection{Risultati}
-
-\begin{table}[!ht]
-    \centering
-% \setlength{\tabcolsep}{0.5em} % horizontal padding
-% {\renewcommand{\arraystretch}{1.5} % vertical padding
-    \begin{tabular}{|l|l|l|l|l|}
-        \hline
-        \textbf{image\_name} & \textbf{camera} & \textbf{date\_time} & \textbf{moon\_phase} & \textbf{temperature} \\ 
-        \hline
-        a & b & c & d & f\\
-        \hline
-    \end{tabular}
-    \caption{???}
-% }
-\end{table}
-
-Abbiamo utilizzato i dati presenti nel dataset, ottenuti dall'analisi delle immagini, per 
-rappresentare al meglio i risultati ottenuti. Dopo dei processi di inferenza sono stati prodotti 
-questi tre grafici, a parer nostro molto significativi al fine di comprendere la distribuzione 
-dei dati a nostra disposizione nel tempo. \\
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/boxplot-outliers.png}
-    \caption{Boxplot dei dati prima di rimuovere gli outliers}
-    \label{fig:boxplot-outliers}
-\end{figure}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/boxplot-wout-outliers.png}
-    \caption{Boxplot dei dati dopo aver rimosso gli outliers}
-    \label{fig:boxplot-wout-outliers}
-\end{figure}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/photos-month.png}
-    \caption{Numero totale di fotografie per ogni mese}
-    \label{fig:photos-month}
-\end{figure}
-Il primo grafico è un \textit{boxplot} che rappresenta il numero di foto presenti nel dataset ad 
-ogni mese, questo grafico contiene anche i dati etichettati successivamente come 
-\textit{outliers}.\\ 
-Successivamente abbiamo utilizzato sempre il \textit{boxplot} ma eliminando, appunto, gli 
-\textit{outliers} per riuscire a farci un'idea di quante foto effettivamente potevano essere 
-scattate in media dalle macchine in un mese.\\
-Abbiamo utilizzato i dati senza \textit{outliers} anche per creare un \textit{grafico a barre} 
-che fosse più esplitativo sul numero di foto presenti nel dataset suddivise per mese, abbiamo 
-comunque osservato che ci sono dei picchi sia molto alti che molto bassi.
-
+\subsection{Results}
+The result was a dataset totally constructed on the basis of images taken by photo-traps. The dataset can be used for many purposes such as training models for animal relocation, performing unsupervised learning, performing inferential analysis on the data, or simply visualizing the data in an informative way. \\ 
 
 \subsubsection{Risultati della configurazione migliore}
-Nella configurazione migliore del clustering abbiamo potuto osservare come il nostro sistema 
-basato su \textit{zero-shot image classification} fosse comunque molto efficente e ci fornisse 
-dei risultati abbastanza soddisfacenti, raggruppando con successo gli animali negli stessi cluster 
-oppure comunque con altre immagini effettivamente simili (e quindi correlate).\\ 
-% \textit{DA ESTENDERE / RIVEDERE}
 
 \subsubsection{Studio di ablazione: confronto tra configurazioni}
 Effetuando la clusterizzazione all'interno del dataset abbiamo affrontato delle scelte che hanno 
@@ -339,7 +255,7 @@ base alle components considerate, quella del \textit{Silhouette Score} ed anceh 
 \paragraph{Acknowledgements} Si ringrazia Tobia Faverio per aver reso possibile lo sviluppo di 
 questo progetto fornendo le fotografie e per la sua idea che ha dato vita ad \textit{aculei}.
 
-\paragraph{Code} available \href{https://gitlab.com/micheledinelli/aculei-ai}{here}
+\paragraph{Code} available \href{https://github.com/micheledinelli/aculei-ai}{here}
 
 \newpage
 \begin{refcontext}[sorting=none]
