@@ -191,44 +191,17 @@ Subsequently, for the results not obtained from metadata, we turned to the pixel
 Following the dataset population, the next step was to assign labels to each image representing the captured animal. To achieve this, we utilized the \textit{Hugging Face library for Zero-shot image} \cite{huggingface} classification, yielding highly positive results that facilitated individualizing each animal. \\
 Ultimately, the chosen solution involved performing three types of clustering (numerical, one-hot encoded, animal-only) and analyzing the results to determine the most suitable approach for the project's final objective.
 
-\subsubsection{Alternativi considerati e giustificazioni della scelta}
-Per realizzare un percorso esplorativo tra leimmagini abbiamo fin da subito provato a realizzare 
-un'AI in grado di riconoscere l'animale selvatico dall'immagine selezionta, una sorta di 
-\texttt{lens} in grado di analizzare la foto e il contesto per poter tracciare quale fosse il 
-soggetto e collegarla ad altre fotografie simili. L'idea è stata abbandonata piuttosto 
-velocemente perchè le risorse a disposizione erano molto inferiori a quelle richieste da un 
-lavoro così costoso computazionalmente parlando.\\
-Per questo abbiamo optato per una soluzione più alla nostra portata e ugualmente molto 
-interessante, abbiamo creato un dataset con le immagini a nostra disposizione abbiamo provato 
-ad utilizzare diversi metodi di clusterizzazione con diversi parametri.\\
-Dopo diverse prove e ricerche abbiamo capito che solo empiricamente e provando si può ottenere 
-il risultato migliore e più adatto alle esigenze, seguendo anche la letteratura di riferimento.\\
-Una volta eseguito il clustering siamo tornati sui nostri passi e abbiamo testato un metodo di 
-\textit{zero-shot image classification} per poter classificare gli animali, siamo così riusciti 
-ad ottenere dei risultati molto soddisfacenti.
+\subsubsection{Alternatives considered and justifications for the choice}
+At first, the option of developing a system that could recommend an image given the previous ones was considered. This type of approach would have been possible with greater computational resources and possibly deeper machine learning techniques. It was decided to pursue unsupervised techniques (clustering) because the nature of the data was amenable to this type of learning.  
 
-\subsubsection{Metodologia per la misurazione delle performance}
-La misurazione della performance è avvenuta tramite diversi metodi e in diversi momenti durante la 
-realizzazione di questo progetto. Abbiamo sempre cercato di ottenere dei buoni risultati tenendo 
-sotto controllo i dati ottenuti.\\
-Per questo motivo, durante la creazione del dataset, abbiamo effettuato diversi test e diverse 
-misurazioni per vedere se i dati in output fossero sensati e collezionati nel modo corretto senza 
-particolari incongruenze.\\
-Per il nostro progetto risulta molto complesso parlare di misurazione della performance visto che 
-il risultato proposto è soggettivamente buono e non può essere valutato da parametri numerici. 
-Generalmente possiamo osservare che i risultati proposti sono di nostro gradimento ma sicuramente 
-possono esserci delle personalizzazioni che magari cambiano l'output in modo da ottenerne uno più 
-utile al proprio scopo, magari modificando le varibili della clusterizzazione o il numero di 
-clusters.\\
-% \textit{DA ESTENDERE / RIVEDERE}
+\subsubsection{Methodology for measuring performance}
+Performance measurement was not trivial during development. We had to define how to evaluate the quality of the dataset we were building, and in addition we had to evaluate the results of unsupervised learning on the data. \\ To assess the quality of the dataset we performed multiple iterations refining ocr-based extraction techniques by combining them with deep reading of the meta-data. Iterating several times, we arrived at a level of liking, with the fields always present and never missing. All this except for temperature, which is a field with about 16\% missing values, often due to total missingness in the meta-data and also in the image pixels. \\ To evaluate clustering instead, we used some metrics such as silhoutte-score to assess the goodness of clusters created. Visual evaluation was also useful and was done using the photo archive showing the images according to the clustering done.
 
+\section{Experimental Results}
 
-\newpage
-\section{Risultati Sperimentali}
+\subsection{Demonstration and Technologies}
 
-\subsection{Dimostrazione e Tecnologie}
-
-\subsubsection{Istruzione per la dimostrazione}
+\subsubsection{Instruction for demonstration}
 La dimostrazione che si ottiene non è altro che un percorso tra delle immagini che sono 
 evidentemente correlate. Il percorso di selezione delle features, e in generale di setting di 
 tutto il sistema di clusterizzazione, è avenuto dopo uno studio del dataset basato 
