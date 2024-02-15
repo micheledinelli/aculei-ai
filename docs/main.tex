@@ -31,6 +31,7 @@
 
 %------------------------------ images
 \usepackage{graphicx}
+\usepackage{subcaption}
 
 %------------------------------ font preferences (1) or sc
 \usepackage[sc]{mathpazo} 
@@ -172,16 +173,31 @@ The main problems encountered are related to the quality of the images (which ar
 Zero-shot Image Classification (ZSIC) represents a cutting-edge frontier in contemporary computer vision, offering a compelling challenge and a rich domain for exploration. At its core, ZSIC involves the classification of images into distinct categories without the model's prior exposure to or explicit training on those categories. Inspired by transfer learning, the method leverages information learned from training one model to identify and categorize new classes that weren't in the original training set. \\
 In addressing the complexities of ZSIC, the employed model utilizes a nuanced learning paradigm, adeptly incorporating three crucial types of data: seen data, unseen data, and auxiliary information. Seen data consists of images and corresponding labels, forming the foundational knowledge base during the model's training. In contrast, unseen data comprises solely class labels, representing uncharted territory that the model navigates and classifies. Bridging the semantic gap between these sets, auxiliary information is introduced during training, offering additional context through textual descriptions or word embeddings.\\ 
 Traditionally, image classification requires training a model on a specific set of labeled images, with fine-tuning often necessary when new labels are introduced. In contrast, the approach embraces zero-shot or open vocabulary image classification, employing multi-modal models trained on extensive datasets of images and associated descriptions. These models excel at learning aligned vision-language representations, ushering in a more flexible framework for image classification. This adaptability allows the model to generalize seamlessly to new and unseen categories without additional training data, enabling users to query images using free-form text descriptions of their target objects. As we navigate the state of the art, it becomes evident that ZSIC, with its reliance on transfer learning and innovative data handling approaches, holds immense promise for reshaping the landscape of image classification, providing models with remarkable adaptability to an ever-expanding spectrum of visual concepts.
+
 \subsubsection{Group management}
 The group worked fairly evenly in the implementation of the project, all of them having 
 participated in different ways in its completion. During the writing of the code, an approach in which everyone was free to criticize and advise what was the ideal solution for him. There were many situations where we got together and tried to devise and develop ideas so that we could 
 solve the problems encountered along the way.
-% \textit{DA ESTENDERE}
 
 \subsubsection{Results obtained: a summary}
 We obtained a dataset from photos of animals taken by photo-traps. Each row in the dataset has information at the time of the shot, such as moon phase, datetime, the most likely label of the subject pictured, a unique identifier, temperature, and season, and the photo-trap that took it. Some data is derivable but still useful for unsupervised learning tasks.
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/zsic.png}
+    \caption{Zero shot image classification results}
+    \label{fig:}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/animals-count.png}
+    \caption{Zero shot image classification results considering the most probable label}
+    \label{fig:}
+\end{figure}
+
 \newpage
+
 \section{Proposed Method}
 The proposed method is a dynamic process based on multiple iterations and steps, leading to the population of the dataset and subsequent clustering. This method represents a culmination of diverse approaches that were systematically tested during the execution, aiming to identify the most optimal solution for our specific requirements. In essence, we navigated through a wide array of solutions to arrive at what appeared to be the most fitting one.
 
@@ -202,58 +218,158 @@ Performance measurement was not trivial during development. We had to define how
 \subsection{Demonstration and Technologies}
 
 \subsubsection{Instruction for demonstration}
-For a demonstration of what has been achieved you can go to the \href{https://aculei.xyz}{aculei} website. Alternatively, source code is provided at the end of this report that can be run by instantiating a virtual python environment and cloning the repository. Note that the images are private and are not provided within the git repository, so request them from one of the authors.
+For a demonstration of what has been achieved you can go to the \href{https://aculei.xyz}{ACULEI} website. Alternatively, source code is provided at the end of this report that can be run by instantiating a virtual python environment and cloning the repository. Note that the images are private and are not provided within the git repository, so request them from one of the authors.\\
+The result obtained by this work is a rich dataset with a lot of information gleaned from  photos.
 
 \subsubsection{Technologies and versions}
-The technologies used were python running in a notebook environment and a variety of libraries. The versions of the libraries used can be found on the \href{https://github.com/micheledinelli/aculei-ai}{requirements.txt} file in the attached repository.
+The technologies used were python running in a notebook environment and a variety of libraries. 
+The libraries used have different purposes, some are useful for the proper storage of data, others are essential for the calculation and processing of data. The versions of the libraries used can be found on the \href{https://github.com/micheledinelli/aculei-ai}{requirements.txt} file in the attached repository. 
 
 \subsection{Results}
-The result was a dataset totally constructed on the basis of images taken by photo-traps. The dataset can be used for many purposes such as training models for animal relocation, performing unsupervised learning, performing inferential analysis on the data, or simply visualizing the data in an informative way. \\ 
+The end result of this attempt was a comprehensive dataset precisely created from photographs acquired by strategically positioned photo-traps. This dataset has enormous potential across multiple disciplines, acting as a solid foundation for numerous applications. It is ready to support efforts ranging from developing complex models for animal relocation projects to facilitating unsupervised learning techniques. Furthermore, its quantity of information allows for in-depth inferential analyses that reveal deep patterns and insights within the data. Furthermore, the dataset provides a great tool for visualizing information in a way that is both interesting and informative. \\ The results of this work have found a home on the ACULEI website, where they are shown with the stated goal of enhancing awareness and comprehension. This platform makes the dataset available to a large audience, acting as a catalyst for informed discourse and action in the fields of wildlife conservation and ecological study.
+The final data obtained by this work are used in \href{https://aculei.xyz}{ACULEI} website with exposure purpose.
 
-\subsubsection{Risultati della configurazione migliore}
-
-\subsubsection{Studio di ablazione: confronto tra configurazioni}
-Effetuando la clusterizzazione all'interno del dataset abbiamo affrontato delle scelte che hanno 
-comportato delle particolari configurazioni, in particolare abbiamo effettuato la \textit{PCA} e 
-abbiamo esaminato i risultati ottenuti grazie alle curve descritte dal variare della varianza in 
-base alle components considerate, quella del \textit{Silhouette Score} ed anceh quella del 
-\textit{WCSS} (Within-Clusters Sum of Squares).\\
-% \textit{DA ESTENDERE / RIVEDERE}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/variance-ratio.png}
-    \caption{Rapporto di Varianza per numero di Components Principali}
-    \label{fig:variance-ratio}
-\end{figure}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{assets/elbow-silhouette.png}
-    \caption{Grafico di comparazione Elbow Method - Silhouette Score}
-    \label{fig:elbow-silhouette}
-\end{figure}
+\subsubsection{Best configuration results}
+In building the dataset for the aculei project, the configuration aimed at achieving optimal performance involves the incorporation of both basic numerical data, such as temperature, and numerical data related to animals. This amalgamation ensures a comprehensive understanding of the environmental factors influencing animal behavior while providing specific information about the species captured in the photographs.
 
 
-\subsubsection{Studio di comparazione con letteratura}
-% \textit{DA ESTENDERE / RIVEDERE}
+\subsubsection{Ablation study: configurations comparison}
+In this chapter are explored 3 different configurations for data clustering: numerical, on-hot-encoded and animal score. Each configuration offers distinct advantages and is tailored to different aspects of the dataset processing and analysis. Each of the configurations has a dedicated python notebook in the project's \href{https://gitlab.com/micheledinelli/aculei-ai/-/tree/main/notebooks/clustering}{clustering} directory.\\
+The techniques differ in the number of clusters generated and their content; some are more specific, others more general.
 
 \newpage
-\section{Discussione e Conclusioni}
 
-\subsection{Discussione dei Risultati}
-\subsubsection{Analisi delle performance rispetto alle aspettative}
+\section*{Configuration using dataset one hot encoded}
 
-\subsection{Validità del Metodo}
-\subsubsection{Valutazione se il metodo rispetta le aspettative}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/elbow-one-hot-pca.png}
+    \caption{Elbow method and silhoutte score using PCA}
+    \label{fig:}
+\end{figure}
 
-\subsection{Limitazione e Maturità}
-\subsubsection{Limiti di applicabilità e bias}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/elbow-one-hot.png}
+    \caption{Elbow method and silhoutte score}
+    \label{fig:}
+\end{figure}
 
-\subsection{Lavori Futuri}
-\subsubsection{Proposte per avanzare il progetto}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/kmeans-one-hot.png}
+    \caption{Kmeans results with PCA reduction for plot}
+    \label{fig:}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/kmeans-one-hot-fancy.png}
+    \caption{Kmeans results with PCA reduction for plot}
+    \label{fig:}
+\end{figure}
 
 \newpage
-\paragraph{Acknowledgements} Si ringrazia Tobia Faverio per aver reso possibile lo sviluppo di 
-questo progetto fornendo le fotografie e per la sua idea che ha dato vita ad \textit{aculei}.
+
+\section*{Configuration using dataset with numerical features only}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/elbow-num-pca.png}
+    \caption{Elbow method and silhoutte score using PCA}
+    \label{fig:}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/elbow-num.png}
+    \caption{Elbow method and silhoutte score}
+    \label{fig:}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/kmeans-num.png}
+    \caption{Kmeans results with PCA reduction for plot}
+    \label{fig:}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/kmeans-num-fancy.png}
+    \caption{Kmeans results with PCA reduction for plot}
+    \label{fig:}
+\end{figure}
+
+\newpage
+\clearpage
+
+\section{Conclusion and discussion}
+
+\subsection{Results discussion}
+%plots nb insights
+\subsubsection{Analysis of performance against expectations}
+The results are very good, the zero-shot classification is more efficient than expected.\\
+We decided to create a notebook with a lot of interesting insights data, named as insights in the project directory. We used different libraries, the most interesting one is \textit{SHAP} \cite{shap} that allow us to produce very interesting and significant graphs. We used a regressor to produce labels on the data. Once obtained, we were able to compute the shap values and analyze the results. \\ The SHAP (SHapley Additive exPlanations) library is a tool for explaining the output of machine learning models. It uses a game theoretic approach to connect optimal credit allocation with local explanations, providing a consistent and objective way to gain insights into how a machine learning model makes predictions. SHAP values are based on game theory and assign an importance value to each feature in a model, showing how each feature affects each final prediction and the significance of each feature compared to others. The library can be used for model interpretability, model debugging, feature importance, and regulatory approval. The primary explainer interface for the SHAP library is shap.Explainer, which uses Shapley values to explain any machine learning model or Python function. We used a regressor because we 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/shap-1.png}
+    \caption{Beeswarm plot from SHAP library}
+    \label{fig:}
+\end{figure}
+
+\subsection{Method validity}
+The method's validity is bolstered by the successful performance of clustering, particularly notable in effectively categorizing high-quality and easiest photos with large and sharp subject.\\
+Given the satisfactory outcomes attained, validated by comparison with ground truth data and expert assessments, confidence in the method's validity is strengthened, laying a solid groundwork for its broader utilization and potential expansion into other fields.
+\subsubsection{Method evaluation}
+The validity of the method and its evaluation are crucial aspects to ascertain the reliability of the clustering process, particularly concerning larger-sized animals more easily identifiable in photographs.\\
+Evaluating the clustering performance involves metrics such as silhouette scores.\\ It is also difficult to properly evaluate the method because we cannot manually check each cluster.
+
+\subsection{Limits}
+The methods of clustering, while effective in many respects, also exhibit certain limitations that warrant consideration. One notable limitation is their sensitivity to initial parameters and assumptions, which can influence the resulting clusters and potentially introduce biases.\\
+Furthermore, the presence of outliers or noise within the dataset can adversely affect the clustering process, potentially leading to the formation of erroneous clusters. Lastly, the interpretability of clustering results can pose challenges, especially in cases where clusters are overlapping or poorly separated, limiting their utility in practical applications
+
+\subsubsection{Applicability limits and bias}
+The project's limitations may stem from issues with OCR in extracting data from minor quality photographs, potentially compromising the accuracy and comprehensiveness of the dataset. Additionally, the limited computational power available could result in extended classification times, slowing down the analysis process and hindering scalability. It's possible to find some problems in corrupted photo files that haven't all the information needed, so it's difficult to extract correct data.\\
+Regarding biases, we have not encountered many of them also because there is not much human intervention in classification, definitely there are biases in the data representation, but we tried to eliminate them by doing some focused group work with different points of view.\\
+
+\subsection{Future Works}
+\subsubsection{Proposals to advance the project}
+To advance the project, an intriguing proposal involves enriching the existing dataset with additional derived data that may not serve the current objectives but could enhance the project's utility and scope. Leveraging these additional data sources can enrich the website's content and provide users with a more comprehensive understanding of the subject.\\
+We already developed a well-structured website where it is possible to have a good data visualization experience.\\
+Generally, the project can evolve into a more comprehensive and scalable platform, offering enhanced value to users and stakeholders.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{assets/moon-phases.png}
+        \caption{Photos per moon phase}
+        \label{fig:sub1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{assets/photos-month.png}
+        \caption{Photos over time}
+        \label{fig:sub2}
+    \end{subfigure}
+    \vskip\baselineskip
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{assets/photo-per-camera.png}
+        \caption{Photos per camera}
+        \label{fig:sub3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{assets/temperature-dist.png}
+        \caption{KDE of temperatures}
+        \label{fig:sub4}
+    \end{subfigure}
+    \label{fig:grid}
+    \caption{Plots about the dataset}
+\end{figure}
+
+\paragraph{Acknowledgements} We thank Tobia Faverio for making the development of this project by providing the photographs and for his idea that gave birth to \textit{aculei}.
 
 \paragraph{Code} available \href{https://github.com/micheledinelli/aculei-ai}{here}
 
